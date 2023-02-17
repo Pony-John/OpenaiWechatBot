@@ -43,7 +43,7 @@ def OpenaiServer(msg=None):
                 # model="text-ada-001",
                 prompt=str(msg),
                 temperature=0.6,
-                max_tokens=3600,
+                max_tokens=1500,
                 top_p=1.0,
                 frequency_penalty=0.0,
                 presence_penalty=0.0,
@@ -58,5 +58,5 @@ def OpenaiServer(msg=None):
             return msg
     except Exception as e:
         output(f"OpenAI_ERROR：{e}")
-        msg = f'\n❌请求DALL·E·2失败！\n🕗请稍后重试。\n════════════\n✉️消息：“{original_msg}”\n════════════\n🚫错误：From<openai.com>:{str(e)}'
+        msg = f'\n❌请求ChatGPT失败！\n🕗请稍后重试。\n════════════\n✉️消息：“{original_msg}”\n════════════\n🚫错误：From<openai.com>:{str(e)}'
         return msg

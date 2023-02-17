@@ -293,16 +293,17 @@ def handle_recv_msg(msgJson):
         # 获取当前机器人昵称
         bot_nickname = get_personal_nickname()
         # 状态测试
-        if keyword == "test":
+        if keyword == "test" and senderid in admin_id.split(","):
             msg = "Server is Online"
             ws.send(send_msg(msg, roomid=roomid, wxid=senderid, nickname=nickname))
-        # 群聊@触发
+        # 群聊@触发,@回复
         elif f'@{bot_nickname}' in keyword:
-            msg = OpenaiServer(keyword.replace(f'@{bot_nickname}',"")).replace("\n\n", "")
+            msg = '\n'
+            msg += OpenaiServer(keyword.replace(f'@{bot_nickname}',"")).replace("\n\n", "")
             ws.send(send_msg(msg, roomid=roomid, wxid=senderid, nickname=nickname))
     # 二、个人私聊
     else: 
-        if keyword == "test":
+        if keyword == "test" and senderid in admin_id.split(","):
             msg = "Server is Online"
             ws.send(send_msg(msg, senderid))
         #OpenAI触发
